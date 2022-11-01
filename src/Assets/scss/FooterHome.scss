@@ -1,0 +1,36 @@
+.footer {
+  .container {
+    .row {
+      .col-4 {
+        padding-left: calc(67 / 1280 * 100%);
+        border-right: 1px solid #dedddc;
+        margin-bottom: 36px;
+        h2 {
+          font-weight: 700;
+          font-size: 20px;
+          margin-bottom: 6px;
+        }
+        h4 {
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 19.36px;
+          margin-bottom: 10px;
+        }
+      }
+      .col-4:last-child {
+        border: none;
+      }
+    }
+  }
+  .author {
+    text-align: center;
+    background-color: #d9d9d9;
+    height: 74px;
+    p {
+      padding-top: 25px;
+      font-size: 20px;
+      font-weight: 400;
+      color: #000;
+    }
+  }
+}
