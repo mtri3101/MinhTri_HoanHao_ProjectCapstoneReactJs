@@ -4,21 +4,30 @@ import '../Assets/scss/HeaderHome.scss'
 
 export default function HeaderHome() {
   return (
-    <div className="header">
-      <div className='container-fluid'>
-        <img src="img/image_3.png" alt="logo" className='logo' />
-        <div className='header-item'>
-          <div className='search'>
-            <img src="img/search.png" alt="search-icon" />
-            <span>Search</span>
+    <div className='headerhome'>
+      <div className="header">
+        <div className='container-fluid'>
+          <img src="img/image_3.png" alt="logo" className='logo' />
+          <div className='header-item'>
+            <div className='search'>
+              <img src="img/search.png" alt="search-icon" />
+              <span>Search</span>
+            </div>
+            <div className='cart'>
+              <img src="img/cart.png" alt="cart" />
+              <span>(1)</span>
+            </div>
+            <NavLink className='login' to='/login'>Login</NavLink>
+            <NavLink className='login' to='/register'><span>Register</span></NavLink>
           </div>
-          <div className='cart'>
-            <img src="img/cart.png" alt="cart" />
-            <span>(1)</span>
-          </div>
-          <NavLink className='login' to='/login'>Login</NavLink>
-          <NavLink className='login' to='/register'><span>Register</span></NavLink>
         </div>
+      </div>
+      <div className='menu container-fluid'>
+        <p>Home</p>
+        <p>Men</p>
+        <p>Woman</p>
+        <p>Kid</p>
+        <p>Sport</p>
       </div>
     </div>
   )
