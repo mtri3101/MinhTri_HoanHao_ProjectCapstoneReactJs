@@ -1,0 +1,89 @@
+.container {
+    margin: 0 auto;
+  .profile {
+    margin: 40px 30px;
+    padding: 15px 0;
+    width: 800px;
+    background: linear-gradient(180deg, #F21299 0%, #1B02B5 100%);
+    padding-left: 50px;
+    color: white;
+    font-size: 40px;
+    margin-left: -23%;
+  }
+  .row {
+    background-color: aliceblue;
+    padding: 20px 0;
+    padding-left: 30px;
+    .col-2 {
+      padding-top: 15px;
+      img {
+      }
+    }
+    .col-8 {
+      .row {
+        .left {
+            .email{
+                p{
+
+                }
+                input{
+
+                }
+            }
+            .phone{
+                p{
+
+                }
+                input{
+                    
+                }
+            }
+          }
+        .right{
+            .name{
+                p{
+
+                }
+                input{
+
+                }
+            }
+            .password{
+                p{
+
+                }
+                input{
+                    
+                }
+            }
+            .gender{
+              margin-top: 15px;
+            }
+        }
+      }
+    }
+  }
+  .history{
+    font-size: 35px;
+    color: #DD2AED;
+    padding: 0 40px;
+    padding-left: 0;
+    border-right: 1px solid silver;
+  }
+  .favorite{
+    font-size: 35px;
+    margin: 0 40px;
+  }
+  .history-order{
+    margin-top: 50px;
+    margin-bottom: 0;
+    color: #DD2AED;
+  }
+  .table{
+    border: 1px solid black;
+    thead{
+      background-color: #D9D9D9;
+      border: 2px solid black;
+    }
+  }
+}
