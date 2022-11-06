@@ -24,6 +24,6 @@ root.render(
         <Route path="search" element={<Search />}></Route>
         <Route path="detail" element={<Detail />}></Route>
       </Route>
-    </Routes>
+    </Routes>    
   </BrowserRouter>
 );

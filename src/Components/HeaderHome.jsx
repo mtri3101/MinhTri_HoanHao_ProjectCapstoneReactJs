@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import '../Assets/scss/HeaderHome.scss'
+import '../Assets/css/HeaderHome.css'
 
 export default function HeaderHome() {
   return (
