@@ -1,8 +1,18 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import '../Assets/css/HeaderHome.css'
+import {useSelector} from 'react-redux'
 
 export default function HeaderHome() {
+
+  const {userLogin} = useSelector(state => state.userReducer);
+  const renderLogin = () =>{
+    if(userLogin.email){
+      return <NavLink className='nav-link text-light' to='/profile'>Hello ! {userLogin.email}</NavLink>
+    }
+    return <NavLink className='nav-link text-light' to='/login'>Login</NavLink>
+  }
+
   return (
     <div className='headerhome'>
       <div className="header">
@@ -17,17 +27,10 @@ export default function HeaderHome() {
               <img src="img/cart.png" alt="cart" />
               <span>(1)</span>
             </div>
-            <NavLink className='login' to='/login'>Login</NavLink>
+            {renderLogin()}
             <NavLink className='login' to='/register'><span>Register</span></NavLink>
           </div>
         </div>
-      </div>
-      <div className='menu container-fluid'>
-        <p>Home</p>
-        <p>Men</p>
-        <p>Woman</p>
-        <p>Kid</p>
-        <p>Sport</p>
       </div>
     </div>
   )
