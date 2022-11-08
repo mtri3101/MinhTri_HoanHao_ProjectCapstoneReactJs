@@ -5,6 +5,7 @@ import {useFormik} from 'formik'
 import * as yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { loginApi } from '../Redux/userReducer/userReducer'
+import { NavLink } from 'react-router-dom'
 export default function Login() {
 
   const dispatch = useDispatch();
@@ -28,21 +29,21 @@ export default function Login() {
     <form className='form-group' onSubmit={frm.handleSubmit}>
       <h3 className='login'>Login</h3>
       <div className='form-container'>
-        <form className='form-control-email'>
+        <div className='form-control-email'>
           <p>Email</p>
           <input type="text" name='email' id='email' onChange={frm.handleChange} onBlur={frm.handleBlur}/>
           {frm.errors.email ? <p className='text text-danger'>{frm.errors.email}</p> : ''}
-        </form>
-        <form className='form-control-password'>
+        </div>
+        <div className='form-control-password'>
           <p>Password</p>
           <input type="password" name='password' id='password' onChange={frm.handleChange} onBlur={frm.handleBlur}/>
           {frm.errors.password ? <p className='text text-danger'>{frm.errors.password}</p> : ''}
-        </form>
-        <form className='form-control-btn'>
-          <a href="/register" className='me-4 text-decoration-none'>Register now ?</a>
+        </div>
+        <div className='form-control-btn'>
+          <NavLink to="/register" className='me-4 text-decoration-none'>Register now ?</NavLink>
           <button className='btn btn-primary'>Login</button>
-        </form>
-        {/* <LoginFacebook/> */}
+        </div>
+        <LoginFacebook/>
       </div>
     </form>
   )

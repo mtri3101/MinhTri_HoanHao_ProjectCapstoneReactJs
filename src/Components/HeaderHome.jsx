@@ -1,14 +1,24 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import '../Assets/scss/HeaderHome.scss'
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
+import { ACCESSTOKEN, settings, USER_LOGIN } from '../Ulti/Config';
 
 export default function HeaderHome() {
 
-  const {userLogin} = useSelector(state => state.userReducer);
-  const renderLogin = () =>{
-    if(userLogin.email){
-      return <NavLink className='nav-link text-light' to='/profile'>Hello ! {userLogin.email}</NavLink>
+  const { userProfile } = useSelector(state => state.userReducer);
+  const renderLogin = () => {
+    if (userProfile.name) {
+      return <>
+        <NavLink className='nav-link text-light' to='/profile'>Hello ! {userProfile.name}</NavLink>
+        <button className='nav-link text-light' style={{background:'none',border:'none'}} onClick={()=>{
+          settings.eraseCookie(ACCESSTOKEN,0);
+          localStorage.removeItem(USER_LOGIN);
+          localStorage.removeItem(ACCESSTOKEN);
+          window.location.href = '/login';
+        }}>Đăng xuất</button>
+      </>
+
     }
     return <NavLink className='nav-link text-light' to='/login'>Login</NavLink>
   }
