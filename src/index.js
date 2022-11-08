@@ -2,7 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./Redux/configStore";
+<<<<<<< HEAD
 import { Routes, Route, BrowserRouter,unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
+=======
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+>>>>>>> 96898e8f8a4cf4559ca0be6b525141fc2bd07706
 import Index from "./Pages/Index";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";

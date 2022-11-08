@@ -25,7 +25,8 @@
     "start": "set HTTPS=true&&react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sass": "node-sass -w src/Assets/scss -o src/Assets/css"
   },
   "eslintConfig": {
     "extends": [
