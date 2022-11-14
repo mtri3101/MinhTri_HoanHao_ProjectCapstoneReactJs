@@ -1,14 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-<<<<<<< HEAD
 import '../Assets/scss/HeaderHome.scss'
 import { useSelector } from 'react-redux'
 import { ACCESSTOKEN, settings, USER_LOGIN } from '../Ulti/Config';
-=======
-import '../Assets/css/HeaderHome.css'
-import {useSelector} from 'react-redux'
->>>>>>> 96898e8f8a4cf4559ca0be6b525141fc2bd07706
-
 export default function HeaderHome() {
 
   const { userProfile } = useSelector(state => state.userReducer);

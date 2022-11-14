@@ -2,31 +2,34 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import "../Assets/scss/Profile.scss"
-import { getProfileApi,getProfileUpdateApi } from '../Redux/userReducer/userReducer';
-import {Formik, useFormik} from 'formik'
+import { getProfileApi, getProfileUpdateApi } from '../Redux/userReducer/userReducer';
+import {  useFormik } from 'formik'
 import * as yup from 'yup'
 export default function Profile() {
-  const {userProfile} = useSelector(state => state.userReducer);
+  const { userProfile } = useSelector(state => state.userReducer);
   const dispatch = useDispatch();
-  useEffect(()=>{
-    
+  useEffect(() => {
+
     const actionAsync = getProfileApi();
     dispatch(actionAsync);
 
-    // async function setIntervalValues(){
-    //   if(frm.values.email) await frm.setValues(userProfile.email);
-    // }
-    // setIntervalValues();
-    
-  },[]);
+  }, []);
+
+  useEffect(()=>{
+    if(Object.keys(userProfile).length !== 0){
+      Object.keys(frm.initialValues).forEach((item)=>{
+        frm.setFieldValue(item,userProfile[item])
+      })
+    }
+  },[userProfile])
 
   const frm = useFormik({
-    initialValues:{
-      email:'',
-      phone:'',
-      name:'',
-      password:'',
-      gender:''
+    initialValues: {
+      email: '',
+      password: '',
+      name: '',
+      gender: '',
+      phone: '',
     },
     validationSchema: yup.object().shape({
       email: yup.string().required('Vui lòng nhập vào email !').email('Email không đúng định dạng !'),
@@ -35,13 +38,15 @@ export default function Profile() {
       password: yup.string().required('Vui lòng nhập vào password !').min(6, 'Password từ 6 - 20 ký tự !').max(20, 'Password từ 6 - 20 ký tự !'),
       gender: yup.boolean().required('Vui lòng chọn gender !'),
     }),
-    onSubmit: (values) =>{
+    validateOnChange: false,
+    validateOnBlur: false,
+    onSubmit: (values) => {
       console.log(values)
-      // const action = getProfileUpdateApi(values);
-      // dispatch(action);
+      const action = getProfileUpdateApi(values);
+      dispatch(action);
     }
   });
-  
+
   return (
     <form className='container' onSubmit={frm.handleSubmit}>
       <h3 className='profile d-flex justify-content-left'>Profile</h3>
@@ -54,34 +59,34 @@ export default function Profile() {
             <div className='col-6 left'>
               <div className='form-group email'>
                 <p>Email</p>
-                <input className='form-control' name={"email"} defaultValue={userProfile.email} onChange={frm.handleChange} onBlur={frm.handleBlur}/>
+                <input className='form-control' name={"email"} value={frm.values.email} onChange={frm.handleChange} onBlur={frm.handleBlur} />
                 {frm.errors.email ? <p className='text text-danger'>{frm.errors.email}</p> : ''}
               </div>
               <div className='form-group phone'>
                 <p className='mb-0'>Phone</p>
-                <input className='form-control' name={"phone"} defaultValue={userProfile.phone} onChange={frm.handleChange} onBlur={frm.handleBlur}/>
+                <input className='form-control' name={"phone"} value={frm.values.phone} onChange={frm.handleChange} onBlur={frm.handleBlur} />
                 {frm.errors.phone ? <p className='text text-danger'>{frm.errors.phone}</p> : ''}
               </div>
             </div>
             <div className='col-6 right'>
               <div className='form-group name'>
                 <p>Name</p>
-                <input className='form-control' name={"name"} defaultValue={userProfile.name} onChange={frm.handleChange} onBlur={frm.handleBlur}/>
+                <input className='form-control' name={"name"} value={frm.values.name} onChange={frm.handleChange} onBlur={frm.handleBlur} />
                 {frm.errors.name ? <p className='text text-danger'>{frm.errors.name}</p> : ''}
               </div>
               <div className='form-group password'>
                 <p className='mb-0'>Password</p>
-                <input className='form-control' name={"password"} type="password" defaultValue={userProfile.password} onChange={frm.handleChange} onBlur={frm.handleBlur}/>
+                <input className='form-control' name={"password"} type="password" value={frm.values.password} onChange={frm.handleChange} onBlur={frm.handleBlur} />
                 {frm.errors.password ? <p className='text text-danger'>{frm.errors.password}</p> : ''}
               </div>
               <div className='form-group gender'>
                 <span className='me-4'>Gender</span>
-                <input className='mx-2' type="radio" id='male' name='gender' defaultValue={true} onChange={frm.handleChange} onBlur={frm.handleBlur}/>
-                <label for="male">Male</label>
-                <input className='mx-2' type="radio" id='female' name='gender' defaultValue={false} onChange={frm.handleChange} onBlur={frm.handleBlur}/>
-                <label for="female">Female</label>
+                <input className='mx-2' type="radio" id='male' name='gender' value={true} onChange={frm.handleChange} onBlur={frm.handleBlur} />
+                <label htmlFor="male">Male</label>
+                <input className='mx-2' type="radio" id='female' name='gender' value={false} onChange={frm.handleChange} onBlur={frm.handleBlur} />
+                <label htmlFor="female">Female</label>
                 {frm.errors.gender ? <p className='text text-danger'>{frm.errors.gender}</p> : ''}
-                <button className='btn btn-primary ms-5'>Update</button>
+                <button type='submit' className='btn btn-primary ms-5'>Update</button>
               </div>
             </div>
           </div>
@@ -101,14 +106,16 @@ export default function Profile() {
             <th>Total</th>
           </tr>
         </thead>
-        <tr className='text-center'>
-          <td>1</td>
-          <td><img src="https://i.pravatar.cc" style={{ height: "80px" }} alt="" /></td>
-          <td>Nike</td>
-          <td>1000</td>
-          <td>1</td>
-          <td>1000</td>
-        </tr>
+        <tbody>
+          <tr className='text-center'>
+            <td>{userProfile.ordersHistory}</td>
+            <td>{userProfile.ordersHistory}</td>
+            <td>{userProfile.ordersHistory}</td>
+            <td>{userProfile.ordersHistory}</td>
+            <td>{userProfile.ordersHistory}</td>
+            <td>{userProfile.ordersHistory}</td>
+          </tr>
+        </tbody>
       </table>
       <nav aria-label="Page navigation example">
         <ul className="pagination justify-content-end">
