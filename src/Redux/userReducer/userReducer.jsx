@@ -10,7 +10,7 @@ const initialState = {
   userProfileUpdate: {
 
   },
-  userRegister: {}
+  userRegister: settings.getStorageJson(USER_REGISTER) ? settings.getStorageJson(USER_REGISTER) : {}
 }
 
 const userReducer = createSlice({
@@ -75,11 +75,11 @@ export const getRegisterApi = (userRegister) =>{
     const action = RegisterAction(result.data.content);
     await dispatch(action);
 
-    // settings.setStorageJson(USER_REGISTER, result.data.content);
+    settings.setStorageJson(USER_REGISTER, result.data.content);
 
-    // settings.setStorage(ACCESSTOKEN, result.data.content.accessToken);
+    settings.setStorage(ACCESSTOKEN, result.data.content.accessToken);
 
-    // settings.setCookie(ACCESSTOKEN, result.data.content.accessToken, 30);
+    settings.setCookie(ACCESSTOKEN, result.data.content.accessToken, 30);
   }
 }
 

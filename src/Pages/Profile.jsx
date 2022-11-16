@@ -108,12 +108,12 @@ export default function Profile() {
         </thead>
         <tbody>
           <tr className='text-center'>
-            <td>{userProfile.ordersHistory}</td>
-            <td>{userProfile.ordersHistory}</td>
-            <td>{userProfile.ordersHistory}</td>
-            <td>{userProfile.ordersHistory}</td>
-            <td>{userProfile.ordersHistory}</td>
-            <td>{userProfile.ordersHistory}</td>
+            <td>1{userProfile.ordersHistory}</td>
+            <td><img src="https://shop.cyberlearn.vn/images/adidas-super-star-red.png" style={{height:"50px",objectFit:"cover"}} alt="" />{userProfile.ordersHistory}</td>
+            <td>Adidas Super Star Red{userProfile.ordersHistory}</td>
+            <td>1000{userProfile.ordersHistory}</td>
+            <td>1{userProfile.ordersHistory}</td>
+            <td>1000{userProfile.ordersHistory}</td>
           </tr>
         </tbody>
       </table>

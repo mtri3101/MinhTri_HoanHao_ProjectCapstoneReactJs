@@ -93,9 +93,7 @@ http.interceptors.request.use((config) => {
 
 http.interceptors.response.use((response) => {
     return response;
-},  (error) => {
-
-    //Thất bại của tất cả request sử dụng http sẽ trả vào đây
+},  (error) => { 
     console.log(error);
     if(error.response?.status === 401) {
         // window.location.href = '/login';

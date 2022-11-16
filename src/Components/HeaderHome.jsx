@@ -3,11 +3,13 @@ import { NavLink } from 'react-router-dom'
 import '../Assets/scss/HeaderHome.scss'
 import { useSelector } from 'react-redux'
 import { ACCESSTOKEN, settings, USER_LOGIN } from '../Ulti/Config';
+import { history } from '../index';
 export default function HeaderHome() {
 
   const { userProfile } = useSelector(state => state.userReducer);
   const renderLogin = () => {
     if (userProfile.name) {
+      history.push('/profile');
       return <>
         <NavLink className='nav-link text-light' to='/profile'>Hello ! {userProfile.name}</NavLink>
         <button className='nav-link text-light' style={{background:'none',border:'none'}} onClick={()=>{
