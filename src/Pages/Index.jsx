@@ -1,8 +1,39 @@
 import React from 'react'
 import '../Assets/css/Index.css'
 import { NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { getProductApi } from '../Redux/productReducer/productReducer'
 
 export default function Index() {
+
+  const { arrProduct } = useSelector(state => state.productReducer)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const action = getProductApi();
+    dispatch(action)
+  }, [])
+
+  const renderProductList = () => {
+    return arrProduct.map((prod,index) => {
+      return <div className="col-3" key={index}>
+      <div className="card">
+        <img src={prod.image} alt="product-image" className='product-image' />
+        <img src="img/heart.png" alt="heart" className='heart' />
+        <div className="card-body">
+          <h1>{prod.name}</h1>
+          <p>{prod.shortDescription}</p>
+        </div>
+        <div className="card-footer">
+          <NavLink to={`/detail/${prod.id}`} className='buy'>Buy now</NavLink>
+          <NavLink className='price'>{prod.price}$</NavLink>
+        </div>
+      </div>
+    </div>
+    })
+  }
+
   return (
     <div className='container-fluid'>
       <div id="carouselId" className="carousel slide" data-bs-ride="carousel">
@@ -52,48 +83,7 @@ export default function Index() {
         </div>
         <div className="product-list">
           <div className="row">
-            <div className="col-3">
-              <div className="card">
-                <img src="img/image_5.png" alt="product-image" className='product-image' />
-                <img src="img/heart.png" alt="heart" className='heart' />
-                <div className="card-body">
-                  <h1>Adidas Prophere</h1>
-                  <p>Short descript...</p>
-                </div>
-                <div className="card-footer">
-                  <NavLink className='buy'>Buy now</NavLink>
-                  <NavLink className='price'>85$</NavLink>
-                </div>
-              </div>
-            </div>
-            <div className="col-3">
-              <div className="card">
-                <img src="img/image_5.png" alt="product-image" className='product-image' />
-                <img src="img/heart.png" alt="heart" className='heart' />
-                <div className="card-body">
-                  <h1>Adidas Prophere</h1>
-                  <p>Short descript...</p>
-                </div>
-                <div className="card-footer">
-                  <NavLink className='buy'>Buy now</NavLink>
-                  <NavLink className='price'>85$</NavLink>
-                </div>
-              </div>
-            </div>
-            <div className="col-3">
-              <div className="card">
-                <img src="img/image_5.png" alt="product-image" className='product-image' />
-                <img src="img/heart.png" alt="heart" className='heart' />
-                <div className="card-body">
-                  <h1>Adidas Prophere</h1>
-                  <p>Short descript...</p>
-                </div>
-                <div className="card-footer">
-                  <NavLink className='buy'>Buy now</NavLink>
-                  <NavLink className='price'>85$</NavLink>
-                </div>
-              </div>
-            </div>
+            {renderProductList()}
           </div>
         </div>
       </div>

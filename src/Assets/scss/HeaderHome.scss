@@ -22,6 +22,7 @@
         position: absolute;
         left: calc(911 / 1280 * 100%);
         .search {
+          background-color: transparent;
           img {
             width: 33px;
             height: 33px;
@@ -36,6 +37,7 @@
           }
         }
         .cart {
+          background-color: transparent;
           img {
             margin-left: 10px;
           }
