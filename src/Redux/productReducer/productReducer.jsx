@@ -84,10 +84,6 @@ const productReducer = createSlice({
                         state.check = false
                         state.cartList[i].quantity--
                     }
-                    if (state.cartList[i].quantity <= 0) {
-                        state.check = true;
-                    }
-
                 }
             }
         }

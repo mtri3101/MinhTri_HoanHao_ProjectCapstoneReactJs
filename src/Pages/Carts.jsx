@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import '../Assets/css/Carts.css'
 import { checkItemInCartListAction, deleteCartItemAction, handleQuantityItemAction, handleQuantityItemDecreaseAction, removeItemFromCartListAction, uncheckAllItemInCartListAction } from '../Redux/productReducer/productReducer'
-import { getProfileApi, SubmitOrderApi } from '../Redux/userReducer/userReducer'
+import { getProfileApi, loginApi, SubmitOrderApi } from '../Redux/userReducer/userReducer'
 import { http, settings } from '../Ulti/Config'
 
 export default function Carts() {
@@ -12,7 +12,7 @@ export default function Carts() {
   const { cartList } = useSelector(state => state.productReducer)
   const { submitOrder } = useSelector(state => state.userReducer)
   const { userProfile } = useSelector(state => state.userReducer)
-  const {check} = useSelector(state => state.productReducer)
+  const { check } = useSelector(state => state.productReducer)
   const dispatch = useDispatch()
 
 
@@ -21,10 +21,11 @@ export default function Carts() {
 
   useEffect(() => {
     //request Login
+    const actionAsync = getProfileApi();
+    dispatch(actionAsync)
+
     const actionUncheck = uncheckAllItemInCartListAction();
     dispatch(actionUncheck)
-    const action = getProfileApi()
-    dispatch(action)
   }, [])
 
   const checkedItem = (e, id) => {
@@ -47,7 +48,7 @@ export default function Carts() {
     dispatch(action)
   }
 
-  const handleQuantityDecrease = (id) =>{
+  const handleQuantityDecrease = (id) => {
     const action = handleQuantityItemDecreaseAction(id)
     dispatch(action)
   }
