@@ -3,7 +3,7 @@ import '../Assets/css/Search.css'
 import { NavLink, useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { searchProductApi } from '../Redux/productReducer/productReducer'
+import { getAllCategoryApi, searchProductApi } from '../Redux/productReducer/productReducer'
 import { useState } from 'react'
 import { useRef } from 'react'
 import axios from 'axios'
@@ -13,6 +13,7 @@ import { orderBy } from 'lodash'
 export default function Search() {
 
   const { searchProduct } = useSelector(state => state.productReducer)
+  const { category } = useSelector(state => state.productReducer)
   const dispatch = useDispatch()
 
   const keywordRef = useRef('');
@@ -20,6 +21,8 @@ export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const [sortProduct, setSortProduct] = useState()
+
+
 
 
   useEffect(() => {
@@ -31,6 +34,12 @@ export default function Search() {
     const action = searchProductApi(keyword);
     dispatch(action)
   }, [keywordRef.current])
+
+  useEffect(() => {
+    const action = getAllCategoryApi();
+    dispatch(action);
+  }, [])
+
 
   const renderProductList = () => {
     //chưa click vào sort
@@ -94,8 +103,23 @@ export default function Search() {
       setSortProduct(sortItem)
       renderProductList();
     }
-
   }
+
+
+  // const renderCategory = () => {
+  //   return category.filter(item => item.categoryChild !== '[]').map((cate, index) => {
+  //     return <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" key={index}>
+  //       <li><a class="dropdown-item" href="#">{cate.id}</a></li>
+  //     </ul>
+  //   })
+  // }
+
+  // const renderChildCategory = () => {
+  //   return category.filter(item => item.categoryParent !== '[]').map((cate, index) => {
+  //     return <option value={cate.id} className='cate-parent' key={index} label={cate.category} ></option>
+  //   })
+  // }
+
 
 
   return (
@@ -111,14 +135,6 @@ export default function Search() {
         <div className='title'>
           <h2>Search result</h2>
         </div>
-        <select name="category" id="category">
-          <option value="all">All category</option>
-          <option value="adidas">Adidas</option>
-          <option value="nike">Nike</option>
-          <option value="vans_converse">Vans converse</option>
-          <option value="men">Men</option>
-          <option value="women">Women</option>
-        </select>
         <div className="sort">
           <p>Price</p>
           <button id='decrease' onClick={handleSort} >

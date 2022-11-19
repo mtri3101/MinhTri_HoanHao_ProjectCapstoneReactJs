@@ -10,35 +10,40 @@ const initialState = {
   userProfileUpdate: {
 
   },
-  userRegister: {}
+  userRegister: {},
+  userCarts: {},
+  submitOrder: {},
 }
 
 const userReducer = createSlice({
   name: 'userReducer',
   initialState,
   reducers: {
-    loginAction: (state,action) =>{
+    loginAction: (state, action) => {
       const userLogin = action.payload;
       state.userLogin = userLogin;
     },
-    getProfileAction: (state,action) =>{
+    getProfileAction: (state, action) => {
       state.userProfile = action.payload;
     },
-    getProfileUpdateAction: (state,action) =>{
+    getProfileUpdateAction: (state, action) => {
       state.userProfileUpdate = action.payload;
     },
-    RegisterAction: (state,action) =>{
+    RegisterAction: (state, action) => {
       state.userRegister = action.payload;
-    }
+    },
+    SubmitOrderAction: (state, action) => {
+      state.submitOrder = action.payload
+    },
   }
 });
 
-export const {loginAction,getProfileAction,getProfileUpdateAction,RegisterAction} = userReducer.actions
+export const { loginAction, getProfileAction, getProfileUpdateAction, RegisterAction, SubmitOrderAction } = userReducer.actions
 
 export default userReducer.reducer
 
-export const loginApi = (userLogin) =>{
-  return async dispatch =>{
+export const loginApi = (userLogin) => {
+  return async dispatch => {
     const result = await http.post('/api/users/signin', userLogin);
     const action = loginAction(result.data.content);
     await dispatch(action);
@@ -53,24 +58,24 @@ export const loginApi = (userLogin) =>{
   }
 }
 
-export const getProfileApi = () =>{
-  return async dispatch =>{
+export const getProfileApi = () => {
+  return async dispatch => {
     const result = await http.post('/api/users/getprofile');
     const action = getProfileAction(result.data.content);
     dispatch(action);
   }
 }
 
-export const getProfileUpdateApi = (userProfileUpdate) =>{
-  return async dispatch =>{
+export const getProfileUpdateApi = (userProfileUpdate) => {
+  return async dispatch => {
     const result = await http.post('/api/Users/updateProfile', userProfileUpdate);
     const action = getProfileUpdateAction(result.data.content);
     dispatch(action);
   }
 }
 
-export const getRegisterApi = (userRegister) =>{
-  return async dispatch =>{
+export const getRegisterApi = (userRegister) => {
+  return async dispatch => {
     const result = await http.post('/api/Users/signup', userRegister);
     const action = RegisterAction(result.data.content);
     await dispatch(action);
@@ -83,12 +88,12 @@ export const getRegisterApi = (userRegister) =>{
   }
 }
 
-export const LoginFacebookApi = (tokenFBApp) =>{
-  return async dispatch =>{
-    const result = await http.post('/api/users/facebooklogin', {facebookToken: tokenFBApp});
+export const LoginFacebookApi = (tokenFBApp) => {
+  return async dispatch => {
+    const result = await http.post('/api/users/facebooklogin', { facebookToken: tokenFBApp });
     const action = loginAction(result.data.content);
     await dispatch(action);
-    
+
     const actionGetProfile = getProfileApi();
     dispatch(actionGetProfile);
 
@@ -97,5 +102,14 @@ export const LoginFacebookApi = (tokenFBApp) =>{
     settings.setStorage(ACCESSTOKEN, result.data.content.accessToken);
 
     settings.setCookie(ACCESSTOKEN, result.data.content.accessToken, 30);
+  }
+}
+
+export const SubmitOrderApi = (myOrder) => {
+  return async dispatch => {
+    let result = await http.post('/api/Users/order', myOrder);
+    console.log(result);
+    const action = SubmitOrderAction(result.data.content);
+    await dispatch(action)
   }
 }

@@ -3,13 +3,18 @@ import '../Assets/css/Detail.css'
 import { NavLink, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
-import { getProductDetailApi } from '../Redux/productReducer/productReducer';
+import { addItemToCartListAction, addItemToCartlistAction, getProductDetailApi, updateItemQuantityToCartListAction } from '../Redux/productReducer/productReducer';
+import { ACCESSTOKEN, settings } from '../Ulti/Config';
+import { forEach, get } from 'lodash';
+import { useState } from 'react';
 
 
 export default function Detail() {
 
   const { productDetail } = useSelector(state => state.productReducer);
   const dispatch = useDispatch();
+  const [numberQuantity, setNumberQuantity] = useState(1)
+  const { cartList } = useSelector(state => state.productReducer)
 
   const params = useParams()
 
@@ -19,22 +24,55 @@ export default function Detail() {
   }, [params.id])
 
   const renderRelatedProduct = () => {
-    return productDetail?.relatedProducts?.map((item,index) =>{
+    return productDetail?.relatedProducts?.map((item, index) => {
       return <div className="col-3" key={index}>
-      <div className="card">
-        <img src={item.image} alt="product-image" className='product-image' />
-        <img src="/img/heart.png" alt="heart" className='heart' />
-        <div className="card-body">
-          <h1>{item.name}</h1>
-          <p>{item.shortDescription}</p>
-        </div>
-        <div className="card-footer">
-          <NavLink to={`/detail/${item.id}`} className='buy'>Buy now</NavLink>
-          <NavLink className='price'>{item.price}$</NavLink>
+        <div className="card">
+          <img src={item.image} alt="product-image" className='product-image' />
+          <img src="/img/heart.png" alt="heart" className='heart' />
+          <div className="card-body">
+            <h1>{item.name}</h1>
+            <p>{item.shortDescription}</p>
+          </div>
+          <div className="card-footer">
+            <NavLink to={`/detail/${item.id}`} className='buy'>Buy now</NavLink>
+            <NavLink className='price'>{item.price}$</NavLink>
+          </div>
         </div>
       </div>
-    </div>
     })
+  }
+
+  const handleUpdateQuantity = (numberClick) => {
+    if (numberQuantity + numberClick <= 0) {
+      setNumberQuantity(1)
+    } else {
+      setNumberQuantity(numberQuantity + numberClick)
+    }
+  }
+
+  const addToCart = () => {
+    let itemCart = {
+      id: productDetail.id,
+      image: productDetail.image,
+      name: productDetail.name,
+      price: productDetail.price,
+      quantity: numberQuantity,
+      userToken: settings.getStore(ACCESSTOKEN),
+      checked: false,
+      
+    }
+    let checkItem = false;
+    for (let i = 0; i < cartList.length; i++) {
+      if (itemCart.id === cartList[i].id) {
+        checkItem = true;
+        const action = updateItemQuantityToCartListAction(itemCart);
+        dispatch(action)
+      }
+    }
+    if (!checkItem) {
+      const action = addItemToCartListAction(itemCart);
+      dispatch(action)
+    }
   }
 
 
@@ -56,11 +94,13 @@ export default function Detail() {
             </div>
             <h4>{productDetail.price}$</h4>
             <div className="quantity">
-              <button>+</button>
-              <span>1</span>
-              <button>-</button>
+              <button onClick={() => { handleUpdateQuantity(1) }}>+</button>
+              <span>
+                {numberQuantity}
+              </span>
+              <button onClick={() => { handleUpdateQuantity(-1) }}>-</button>
             </div>
-            <button className='addToCart'>Add to cart</button>
+            <NavLink to={'/carts'} className='addToCart' onClick={addToCart}>Add to cart</NavLink>
           </div>
         </div>
       </div>
