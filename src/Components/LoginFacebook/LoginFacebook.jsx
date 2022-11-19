@@ -1,5 +1,5 @@
 import React from 'react'
-import FacebookLogin from 'react-facebook-login';
+//import FacebookLogin from 'react-facebook-login';
 import { useDispatch } from 'react-redux';
 import { LoginFacebookApi } from '../../Redux/userReducer/userReducer';
 
@@ -12,11 +12,11 @@ export default function LoginFacebook() {
     }
   return (
     <div className='text-center mt-2'>
-      <FacebookLogin
+      {/* <FacebookLogin
       appId="424168889872775"
       // autoLoad={true}
       fields="name,email,picture"
-      callback={responseFacebook}/>
+      callback={responseFacebook}/> */}
     </div>
   )
 }
