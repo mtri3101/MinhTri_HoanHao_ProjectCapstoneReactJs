@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import "../Assets/scss/Profile.scss"
 import { getProfileApi, getProfileUpdateApi } from '../Redux/userReducer/userReducer';
-import {  useFormik } from 'formik'
+import { useFormik } from 'formik'
 import * as yup from 'yup'
 export default function Profile() {
   const { userProfile } = useSelector(state => state.userReducer);
@@ -15,13 +15,13 @@ export default function Profile() {
 
   }, []);
 
-  useEffect(()=>{
-    if(Object.keys(userProfile).length !== 0){
-      Object.keys(frm.initialValues).forEach((item)=>{
-        frm.setFieldValue(item,userProfile[item])
+  useEffect(() => {
+    if (Object.keys(userProfile).length !== 0) {
+      Object.keys(frm.initialValues).forEach((item) => {
+        frm.setFieldValue(item, userProfile[item])
       })
     }
-  },[userProfile])
+  }, [userProfile])
 
   const frm = useFormik({
     initialValues: {
