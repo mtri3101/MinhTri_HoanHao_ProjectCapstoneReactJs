@@ -47,6 +47,36 @@ export default function Profile() {
     }
   });
 
+  const orderHistory = () =>{
+    return userProfile.ordersHistory?.map((item,index)=>{
+      return <>
+      <p className='history-order' key={index}>+ Orders have been placed on {item.date}</p>
+        <table className='table'>
+        <thead>
+          <tr className='text-center'>
+            <th>Id</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quanlity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+      <tr className='text-center'>
+      <td>{item.id}</td>
+      <td><img src={item.orderDetail[0].image} style={{ height: "50px", objectFit: "cover" }} alt="" /></td>
+      <td>{item.orderDetail[0].name}</td>
+      <td>{item.orderDetail[0].price}$</td>
+      <td>{item.orderDetail[0].quantity}</td>
+      <td>{(item.orderDetail[0].price * item.orderDetail[0].quantity).toLocaleString()}$</td>
+    </tr>
+    </tbody>
+    </table>
+    </>
+    })
+  }
+
   return (
     <form className='container' onSubmit={frm.handleSubmit}>
       <h3 className='profile d-flex justify-content-left'>Profile</h3>
@@ -94,29 +124,7 @@ export default function Profile() {
       </div>
       <span className='history'>Order History</span>
       <span className='favorite'>Favorite</span>
-      <p className='history-order'>+ Orders have been placed on 09 - 19 - 2020</p>
-      <table className='table'>
-        <thead>
-          <tr className='text-center'>
-            <th>Id</th>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Quanlity</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className='text-center'>
-            <td>1{userProfile.ordersHistory}</td>
-            <td><img src="https://shop.cyberlearn.vn/images/adidas-super-star-red.png" style={{height:"50px",objectFit:"cover"}} alt="" />{userProfile.ordersHistory}</td>
-            <td>Adidas Super Star Red{userProfile.ordersHistory}</td>
-            <td>1000{userProfile.ordersHistory}</td>
-            <td>1{userProfile.ordersHistory}</td>
-            <td>1000{userProfile.ordersHistory}</td>
-          </tr>
-        </tbody>
-      </table>
+          {orderHistory()}
       <nav aria-label="Page navigation example">
         <ul className="pagination justify-content-end">
           <li className="page-item">
