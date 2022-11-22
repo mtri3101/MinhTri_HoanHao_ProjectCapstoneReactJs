@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import { loginApi } from '../Redux/userReducer/userReducer'
 import { NavLink } from 'react-router-dom'
 export default function Login() {
-
+  const { userLogin } = useSelector(state => state.userReducer);
   const dispatch = useDispatch();
   const frm = useFormik({
     initialValues:{

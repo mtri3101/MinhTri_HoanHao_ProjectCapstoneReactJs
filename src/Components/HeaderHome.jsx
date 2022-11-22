@@ -20,7 +20,6 @@ export default function HeaderHome() {
 
 
   const renderLogin = () => {
-
     if (userProfile.name) {
       // history.push('/profile');
       return <>
