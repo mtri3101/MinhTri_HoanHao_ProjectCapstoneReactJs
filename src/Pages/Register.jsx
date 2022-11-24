@@ -34,7 +34,7 @@ export default function Register() {
 
 
   return (
-    <form className='form-group' onSubmit={frm.handleSubmit}>
+    <form className='form-group register' onSubmit={frm.handleSubmit}>
       <h3>Register</h3>
       <div className='container'>
         <div className='row'>

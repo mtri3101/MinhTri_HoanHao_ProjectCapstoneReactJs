@@ -47,38 +47,40 @@ export default function Profile() {
     }
   });
 
-  const orderHistory = () =>{
-    return userProfile.ordersHistory?.map((item,index)=>{
+  const orderHistory = () => {
+    return userProfile.ordersHistory?.map((item, index) => {
       return <>
-      <p className='history-order' key={index}>+ Orders have been placed on {item.date}</p>
-        <table className='table'>
-        <thead>
-          <tr className='text-center'>
-            <th>Id</th>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Quanlity</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-      <tr className='text-center'>
-      <td>{item.id}</td>
-      <td><img src={item.orderDetail[0].image} style={{ height: "50px", objectFit: "cover" }} alt="" /></td>
-      <td>{item.orderDetail[0].name}</td>
-      <td>{item.orderDetail[0].price}$</td>
-      <td>{item.orderDetail[0].quantity}</td>
-      <td>{(item.orderDetail[0].price * item.orderDetail[0].quantity).toLocaleString()}$</td>
-    </tr>
-    </tbody>
-    </table>
-    </>
+        <p className='history-order' key={index}>+ Orders have been placed on {item.date}</p>
+        <div className='table-res'>
+          <table className='table'>
+            <thead>
+              <tr className='text-center'>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className='text-center'>
+                <td>{item.id}</td>
+                <td><img src={item.orderDetail[0].image} style={{ height: "50px", objectFit: "cover" }} alt="" /></td>
+                <td>{item.orderDetail[0].name}</td>
+                <td>{item.orderDetail[0].price}$</td>
+                <td>{item.orderDetail[0].quantity}</td>
+                <td>{(item.orderDetail[0].price * item.orderDetail[0].quantity).toLocaleString()}$</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </>
     })
   }
 
   return (
-    <form className='container' onSubmit={frm.handleSubmit}>
+    <form className='container profile-page' onSubmit={frm.handleSubmit}>
       <h3 className='profile d-flex justify-content-left'>Profile</h3>
       <div className='row'>
         <div className='col-2'>
@@ -124,8 +126,8 @@ export default function Profile() {
       </div>
       <span className='history'>Order History</span>
       <span className='favorite'>Favorite</span>
-          {orderHistory()}
-      <nav aria-label="Page navigation example">
+      {orderHistory()}
+      <nav aria-label="Page navigation example" className='pagination'>
         <ul className="pagination justify-content-end">
           <li className="page-item">
             <a className="page-link" href="#" aria-label="Previous">

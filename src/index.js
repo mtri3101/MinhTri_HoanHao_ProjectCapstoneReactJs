@@ -12,6 +12,8 @@ import Search from "./Pages/Search";
 import Detail from "./Pages/Detail";
 import HomeTemplate from "./Templates/HomeTemplate";
 import { createBrowserHistory } from "history";
+import ResponsiveItem from "./Responsive/ResponsiveItem";
+import Mobile_Carts from "./Pages/Mobile/Mobile_Carts";
 export const history = createBrowserHistory();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -20,11 +22,11 @@ root.render(
     <HistoryRouter history={history}>
         <Routes>
           <Route path="" element={<HomeTemplate />}>
-            <Route index element={<Index />}></Route>
+            <Route index element={<Index/>}></Route>
             <Route path="login" element={<Login />}></Route>
             <Route path="register" element={<Register />}></Route>
             <Route path="profile" element={<Profile />}></Route>
-            <Route path="carts" element={<Carts />}></Route>
+            <Route path="carts" element={<ResponsiveItem component={Carts} mobileComponent={Mobile_Carts} />}></Route>
             <Route path="search" element={<Search />}></Route>
             <Route path="detail" >
               <Route path=":id" element={<Detail />}></Route>
