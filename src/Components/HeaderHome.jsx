@@ -21,7 +21,7 @@ export default function HeaderHome() {
 
   const renderLogin = () => {
     if (userProfile.name) {
-      // history.push('/profile');
+      history.push('/profile');
       return <>
         <NavLink className='nav-link text-light' to='/profile'>Hello ! {userProfile.name}</NavLink>
         <button className='nav-link text-light' style={{ background: 'none', border: 'none' }} onClick={() => {

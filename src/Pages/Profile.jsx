@@ -28,7 +28,7 @@ export default function Profile() {
       email: '',
       password: '',
       name: '',
-      gender: '',
+      gender: '', 
       phone: '',
     },
     validationSchema: yup.object().shape({
@@ -111,9 +111,9 @@ export default function Profile() {
               </div>
               <div className='form-group gender'>
                 <span className='me-4'>Gender</span>
-                <input className='mx-2' type="radio" id='male' name='gender' value={true} onChange={frm.handleChange} onBlur={frm.handleBlur} />
+                <input className='mx-2' type="radio" id='male' name={'gender'} value='1' checked={frm.values.gender === '1'} onChange={frm.handleChange} onBlur={frm.handleBlur} />
                 <label htmlFor="male">Male</label>
-                <input className='mx-2' type="radio" id='female' name='gender' value={false} onChange={frm.handleChange} onBlur={frm.handleBlur} />
+                <input className='mx-2' type="radio" id='female' name={'gender'} value='0' checked={frm.values.gender === '0'} onChange={frm.handleChange} onBlur={frm.handleBlur} />
                 <label htmlFor="female">Female</label>
                 {frm.errors.gender ? <p className='text text-danger'>{frm.errors.gender}</p> : ''}
                 <button type='submit' className='btn btn-primary ms-5'>Update</button>
