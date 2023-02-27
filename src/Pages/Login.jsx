@@ -25,7 +25,7 @@ export default function Login() {
   });
 
   return (
-    <form className='form-group' onSubmit={frm.handleSubmit}>
+    <form className='form-group login-page' onSubmit={frm.handleSubmit}>
       <h3 className='login'>Login</h3>
       <div className='form-container'>
         <div className='form-control-email'>

@@ -1,89 +1,156 @@
-.container {
-    margin: 0 auto;
+.profile-page {
+  margin: 0 auto;
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
   .profile {
     margin: 40px 30px;
     padding: 15px 0;
     width: 800px;
-    background: linear-gradient(180deg, #F21299 0%, #1B02B5 100%);
+    background: linear-gradient(180deg, #f21299 0%, #1b02b5 100%);
     padding-left: 50px;
     color: white;
     font-size: 40px;
     margin-left: -23%;
+    @media screen and (max-width: 768px) {
+      margin: 0;
+      width: 100%;
+      margin-bottom: 40px;
+    }
   }
   .row {
     background-color: aliceblue;
     padding: 20px 0;
     padding-left: 30px;
+    @media screen and (max-width: 992px) {
+      display: block;
+      padding: 0;
+      margin: 0 auto;
+    }
+    @media screen and (max-width: 992px) {
+      width: 100%;
+    }
     .col-2 {
       padding-top: 15px;
+      @media screen and (max-width: 992px) {
+        margin-left: 15%;
+      }
+      @media screen and (max-width: 350px) {
+        margin-left: 0;
+      }
       img {
+        @media screen and (max-width: 992px) {
+          display: block;
+          height: auto !important;
+          width: 250px !important;
+        }
       }
     }
     .col-8 {
       .row {
         .left {
-            .email{
-                p{
-
-                }
-                input{
-
-                }
+          .email {
+            @media screen and (max-width: 992px) {
+              width: 60vw;
             }
-            .phone{
-                p{
-
-                }
-                input{
-                    
-                }
+            @media screen and (max-width: 550px) {
+              width: 80vw;
+            }
+            p {
+            }
+            input {
             }
           }
-        .right{
-            .name{
-                p{
-
-                }
-                input{
-
-                }
+          .phone {
+            @media screen and (max-width: 992px) {
+              width: 60vw;
             }
-            .password{
-                p{
-
-                }
-                input{
-                    
-                }
+            @media screen and (max-width: 550px) {
+              width: 80vw;
             }
-            .gender{
-              margin-top: 15px;
+            p {
             }
+            input {
+            }
+          }
+        }
+        .right {
+          .name {
+            @media screen and (max-width: 992px) {
+              width: 60vw;
+            }
+            @media screen and (max-width: 550px) {
+              width: 80vw;
+            }
+            p {
+            }
+            input {
+            }
+          }
+          .password {
+            @media screen and (max-width: 992px) {
+              width: 60vw;
+            }
+            @media screen and (max-width: 550px) {
+              width: 80vw;
+            }
+            p {
+            }
+            input {
+            }
+          }
+          .gender {
+            margin-top: 15px;
+            @media screen and (max-width: 992px) {
+              width: 60vw;
+            }
+            @media screen and (max-width: 550px) {
+              width: 80vw;
+            }
+            button {
+              @media screen and (max-width: 992px) {
+                display: block;
+                margin: auto !important;
+                margin-top: 20px;
+                margin-bottom: 25px;
+              }
+            }
+          }
         }
       }
     }
   }
-  .history{
+  .history {
     font-size: 35px;
-    color: #DD2AED;
+    color: #dd2aed;
     padding: 0 40px;
     padding-left: 0;
     border-right: 1px solid silver;
   }
-  .favorite{
+  .favorite {
     font-size: 35px;
     margin: 0 40px;
+    @media screen and (max-width: 350px) {
+      margin: 0;
+    }
   }
-  .history-order{
+  .history-order {
     margin-top: 50px;
     margin-bottom: 0;
-    color: #DD2AED;
+    color: #dd2aed;
   }
-  .table{
+  .table-res {
+    overflow-x: auto;
+  }
+  .table {
     border: 1px solid black;
-    thead{
-      background-color: #D9D9D9;
+    thead {
+      background-color: #d9d9d9;
       border: 2px solid black;
     }
   }
+  .pagination{
+
+  }
 }
+

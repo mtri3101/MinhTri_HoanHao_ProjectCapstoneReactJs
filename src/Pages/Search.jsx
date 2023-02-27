@@ -1,5 +1,5 @@
 import React from 'react'
-import '../Assets/css/Search.css'
+import '../Assets/scss/Search.scss'
 import { NavLink, useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'

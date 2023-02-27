@@ -1,5 +1,5 @@
 import React from 'react'
-import '../Assets/css/Detail.css'
+import '../Assets/scss/Detail.scss'
 import { NavLink, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';

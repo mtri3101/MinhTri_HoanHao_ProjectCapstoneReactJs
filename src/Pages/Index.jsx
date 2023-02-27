@@ -1,5 +1,5 @@
 import React from 'react'
-import '../Assets/css/Index.css'
+import '../Assets/scss/Index.scss'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'

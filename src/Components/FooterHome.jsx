@@ -1,5 +1,5 @@
 import React from 'react'
-import '../Assets/css/FooterHome.css'
+import '../Assets/scss/FooterHome.scss'
 
 export default function FooterHome() {
   return (
